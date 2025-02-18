@@ -24,3 +24,13 @@ Su dung pattern: App settings page (https://www.youtube.com/watch?v=WyGN5CT9iCs&
 - Viết Các function: Loader, Action để xử lý form data
     (https://remix.run/docs/en/main/discussion/data-flow)
 - To submit form, need to add Form to the component
+
+14. How to handle API requests in Remix App POST, PATCH, DELETE
+- copy the application_url in shopify.app.toml to browser
+if you want to use {{application_url}}/api/wishlist, create file api.wishlist.jsx in the routes folder
+https://ko-units-dependent-lived.trycloudflare.com/api/wishlist
+
+=> it will run GET method as default => require function loader()
+=> If you want to use POST method => require function action()
+=> You can try on the Postman
+
