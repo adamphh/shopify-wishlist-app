@@ -1,0 +1,26 @@
+10. Remix app structure for shopify
+    - app: chứa toàn bộ source code cần thiết của app
+        - routes
+    - extensions: chứa app extensions
+    - prisma: chứa tất cả database schema
+    - public: chứa toàn bộ assets (css,...) or images
+    - package.json
+    - shopify.app.toml
+    - shopify.web.toml
+
+11. Shopify polaris and app bridge with example
+https://www.youtube.com/watch?v=bLVbCAoQQH0&list=PLB4AdipoHpxZu39dNjUWGRwgeKgW7mVJ-&index=11
+
+12. Let's create a new shopify page with Shopify Polaris Remix app
+https://www.youtube.com/watch?v=li457UjEQik&list=PLB4AdipoHpxZu39dNjUWGRwgeKgW7mVJ-&index=12
+
+13. Remix Form data handling with Loader and Actions for Shopify app
+https://www.youtube.com/watch?v=WyGN5CT9iCs&list=PLB4AdipoHpxZu39dNjUWGRwgeKgW7mVJ-&index=13
+
+- Tạo setting page với 2 field: app name va description
+Su dung pattern: App settings page (https://www.youtube.com/watch?v=WyGN5CT9iCs&list=PLB4AdipoHpxZu39dNjUWGRwgeKgW7mVJ-&index=13)
+- Viết thêm code để lưu trữ và hiển thị giá trị của các field trong form:
+    onChange, setState,...
+- Viết Các function: Loader, Action để xử lý form data
+    (https://remix.run/docs/en/main/discussion/data-flow)
+- To submit form, need to add Form to the component
