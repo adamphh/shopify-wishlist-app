@@ -13,14 +13,16 @@ import {
 import { useState } from "react";
 import { json } from "@remix-run/node";
 import { useLoaderData, Form } from "@remix-run/react";
-// import { TitleBar } from "@shopify/app-bridge-react";
+import db from "../db.server"
 
 export async function loader(state) {
   // Get data from database and provide data to the component
-  let settings = {
-    name: 'my wishlist application',
-    description: 'My wishlist application description',
-  }
+  // let settings = {
+  //   name: 'my wishlist application',
+  //   description: 'My wishlist application description',
+  // }
+  let settings = await db.settings.findFirst({ where: { id: '1' } });
+  console.log('settings loader: ', settings);
   return json(settings)
 }
 
@@ -31,12 +33,31 @@ export async function action({ request }) {
   // Because settings is not an object, we need to convert it to object
   settings = Object.fromEntries(settings)
 
+  // Update data from database
+  // https://www.prisma.io/docs/orm/reference/prisma-client-reference
+  await db.settings.upsert({
+    where: {
+      id: '1',
+    },
+    update: {
+      id: '1',
+      name: settings.name,
+      description: settings.description
+    },
+    create: {
+      id: '1',
+      name: settings.name,
+      description: settings.description
+    },
+  })
+
   return json(settings);
 }
 
 export default function SettingsPage() {
   const { smUp } = useBreakpoints();
   const settingData = useLoaderData();
+  console.log('setting data: ', settingData)
   const [formState, setFormState] = useState(settingData);
 
   // This example is for guidance purposes. Copying it will come with caveats.
@@ -62,8 +83,8 @@ export default function SettingsPage() {
           <Card roundedAbove="sm">
             <Form method="POST">
               <BlockStack gap="400">
-                <TextField label="App name" name='name' value={formState.name} onChange={(value) => setFormState({ ...formState, name: value })} />
-                <TextField label="Description" name='description' value={formState.description} onChange={(value) => setFormState({ ...formState, description: value })} />
+                <TextField label="App name" name='name' value={formState?.name} onChange={(value) => setFormState({ ...formState, name: value })} />
+                <TextField label="Description" name='description' value={formState?.description} onChange={(value) => setFormState({ ...formState, description: value })} />
                 <Button variant="primary" submit="true">{'Save'}</Button>
               </BlockStack>
             </Form>

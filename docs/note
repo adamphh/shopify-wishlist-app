@@ -34,3 +34,16 @@ https://ko-units-dependent-lived.trycloudflare.com/api/wishlist
 => If you want to use POST method => require function action()
 => You can try on the Postman
 
+15. Shopify Remix app Database structure
+- Khai bao table structure trong file prisma/schema.prisma 
+- Sau đó cần chạy lệnh sau để generate prima migrations: 
+    npm run prisma migrate dev -- --name {{migration_name}}
+    {{migration_name}} sẽ được hiển thị ở file trong thư mục migrations
+
+- Sau khi generate, có thể chạy lệnh sau để kiểm tra database, các bảng
+    npm run prisma studio
+- https://www.prisma.io/docs/orm/prisma-client/queries/crud
+- https://www.prisma.io/docs/orm/reference/prisma-client-reference
+
+- // Because settings is not an object, we need to convert it to object
+  settings = Object.fromEntries(settings)
